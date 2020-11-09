@@ -35,20 +35,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: "change-profile",
-    loadChildren: () =>
-      import("./pages/account/change-profile/change-profile.module").then(
-        (m) => m.ChangeProfilePageModule
-      ),
-  },
-  {
-    path: "change-password",
-    loadChildren: () =>
-      import("./pages/account/change-password/change-password.module").then(
-        (m) => m.ChangePasswordPageModule
-      ),
-  },
-  {
     path: "select-language",
     loadChildren: () =>
       import("./pages/select-language/select-language.module").then(
