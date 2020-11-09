@@ -1,0 +1,7 @@
+{
+  "name": "fun-indonesia",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
