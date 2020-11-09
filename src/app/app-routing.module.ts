@@ -46,6 +46,25 @@ const routes: Routes = [
     loadChildren: () =>
       import("./pages/modal/about/about.module").then((m) => m.AboutPageModule),
   },
+  {
+    path: "login",
+    loadChildren: () =>
+      import("./pages/auth/login/login.module").then((m) => m.LoginPageModule),
+  },
+  {
+    path: "register",
+    loadChildren: () =>
+      import("./pages/auth/register/register.module").then(
+        (m) => m.RegisterPageModule
+      ),
+  },
+  {
+    path: "on-boarding",
+    loadChildren: () =>
+      import("./pages/on-boarding/on-boarding.module").then(
+        (m) => m.OnBoardingPageModule
+      ),
+  },
 ];
 
 @NgModule({
