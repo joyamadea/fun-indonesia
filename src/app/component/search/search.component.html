@@ -1,3 +1,57 @@
-<p>
-  search works!
-</p>
+<ion-header>
+  <ion-toolbar color="redd">
+    <ion-searchbar placeholder="Location"></ion-searchbar>
+
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()" fill="clear">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row style="padding: 6px; padding-top: 15px">
+    <ion-col>
+      <span style="font-weight: bold; font-size: 16px">
+        Popular Locations
+      </span></ion-col
+    >
+  </ion-row>
+  <ion-row>
+    <ion-col class="ion-no-padding">
+      <div class="scroll">
+        <ion-card class="card-highlight">
+          <img
+            src="../../../assets/dummy/Jakarta.jpg"
+            style="height: 100px; width: 118px; object-fit: cover"
+          />
+        </ion-card>
+        <ion-card class="card-highlight">
+          <img
+            src="../../../assets/dummy/Bandung.jpg"
+            style="height: 100px; width: 118px; object-fit: cover"
+          />
+        </ion-card>
+        <ion-card class="card-highlight">
+          <img
+            src="../../../assets/dummy/Bandung.jpg"
+            style="height: 100px; width: 118px; object-fit: cover"
+          />
+        </ion-card>
+        <ion-card class="card-highlight">
+          <img
+            src="../../../assets/dummy/Bandung.jpg"
+            style="height: 100px; width: 118px; object-fit: cover"
+          />
+        </ion-card>
+        <ion-card class="card-highlight">
+          <img
+            src="../../../assets/dummy/Bandung.jpg"
+            style="height: 100px; width: 118px; object-fit: cover"
+          />
+        </ion-card>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-content>

@@ -1,6 +1,10 @@
 <ion-header>
-  <ion-toolbar color="danger">
-    <ion-icon name="arrow-back-outline" slot="start" (click)="back()"></ion-icon>
+  <ion-toolbar color="redd">
+    <ion-icon
+      name="arrow-back-outline"
+      slot="start"
+      (click)="back()"
+    ></ion-icon>
     <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -16,6 +20,15 @@
       <ion-input type="password" placeholder="Enter your password"></ion-input>
     </ion-item>
   </form>
-  <ion-button class="ion-padding" color="danger" expand="block" (click)="login()">Login</ion-button>
-  <ion-button class="ion-padding" color="danger" fill="clear" expand="block" (click)="regisPage()"><b>Don't have an account? Register here.</b></ion-button>
+  <ion-button class="ion-padding" color="redd" expand="block" (click)="login()"
+    >Login</ion-button
+  >
+  <ion-button
+    class="ion-padding"
+    color="redd"
+    fill="clear"
+    expand="block"
+    (click)="regisPage()"
+    ><b>Don't have an account? Register here.</b></ion-button
+  >
 </ion-content>

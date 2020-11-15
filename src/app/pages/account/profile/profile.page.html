@@ -1,37 +1,77 @@
 <ion-header>
-  <ion-toolbar color="danger">
-    <ion-title>profile</ion-title>
+  <ion-toolbar color="redd">
+    <ion-title>Account</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item class="ion-padding">
-    <ion-avatar slot="start">
-      <img src="https://pbs.twimg.com/media/EcXskoLVAAAzVu5.jpg">
-    </ion-avatar>
-    <ion-icon name="settings-outline"slot="end"></ion-icon>
-    <ion-list><ion-label>
-      <b>Nama</b>
-    </ion-label>
-    <ion-label>
-      Email
-    </ion-label></ion-list>
-  </ion-item>
-    <ion-list class="ion-padding" >
-      <ion-item (click)="presentModalAbout()">
-        <ion-icon name="information-circle-outline" slot="start"></ion-icon>
-        <ion-label>
-          About FunIndonesia
+  <div class="profile-header2 ion-margin-horizontal">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="2">
+        <img
+          src="https://pbs.twimg.com/media/EcXskoLVAAAzVu5.jpg"
+          class="image-thumbnail"
+          (click)="changePhoto()"
+        />
+        <!-- <span class="camera">
+          <img src="assets/icon/camera.svg" class="image-size-14" (click)="changePhoto()" />
+        </span> -->
+      </ion-col>
+      <ion-col size="8" class="elipsis">
+        <ion-label class="profile">
+          <span class="user-name"><b>Name</b> </span>
+          <h3 class="user-info">Email</h3>
         </ion-label>
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+      </ion-col>
+      <ion-col size="2" class="ion-text-right">
+        <ion-buttons class="ion-margin-start">
+          <ion-button
+            (click)="openEditProfile()"
+            fill="clear"
+            class="ion-text-right"
+          >
+            <ion-icon
+              slot="icon-only"
+              color="brown-grey"
+              name="settings"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-card class="ion-margin" style="margin-top: 24px">
+    <ion-list class="ion-no-padding">
+      <ion-item
+        detail
+        style="--padding-start: 0px"
+        color="white"
+        (click)="presentModalAbout()"
+      >
+        <ion-label style="display: flex">
+          <ion-icon
+            name="information-circle"
+            slot="start"
+            class="icon-legal"
+          ></ion-icon>
+          <span class="text-legal">About FunIndonesia</span>
+        </ion-label>
       </ion-item>
-      <ion-item (click)="presentModalLanguage()">
-        <ion-icon name="globe-outline" slot="start"></ion-icon>
-        <ion-label>
-          Choose Language
+      <ion-item
+        detail
+        lines="none"
+        style="--padding-start: 0px"
+        color="white"
+        (click)="presentModalLanguage()"
+      >
+        <ion-label style="display: flex">
+          <ion-icon name="globe" slot="start" class="icon-legal"></ion-icon>
+          <span class="text-legal">Change Language</span>
         </ion-label>
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
     </ion-list>
-    <ion-button class="ion-padding" expand="block" color="danger" (click)="logOut()">Log Out</ion-button>
+  </ion-card>
+  <ion-button class="ion-padding" expand="block" color="redd" (click)="logOut()"
+    >Log Out</ion-button
+  >
 </ion-content>

@@ -65,6 +65,13 @@ const routes: Routes = [
         (m) => m.OnBoardingPageModule
       ),
   },
+  {
+    path: "places-detail/:id",
+    loadChildren: () =>
+      import("./pages/places/places-detail/places-detail.module").then(
+        (m) => m.PlacesDetailPageModule
+      ),
+  },
 ];
 
 @NgModule({

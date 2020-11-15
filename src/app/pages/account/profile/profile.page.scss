@@ -1,0 +1,72 @@
+.profile {
+  width: 222px;
+  text-align: left;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  &-header2 {
+    margin-top: 20px;
+    border-radius: 6px;
+    padding: 16px;
+    background: white;
+    color: black;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    box-shadow: 0 2px 7px 0 rgba(0, 0, 0, 0.07);
+    border-bottom: 1px solid #e7e7e7;
+  }
+}
+
+.user {
+  &-name {
+    height: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    text-align: left;
+    word-break: break-all;
+  }
+  &-info {
+    padding-bottom: 16px;
+    height: 12px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.33;
+    text-align: left;
+    color: #979797;
+  }
+  &-verification {
+    padding-bottom: 16px;
+    height: 12px;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.33;
+    text-align: left;
+    color: #dd3945;
+  }
+}
+
+.image {
+  &-thumbnail {
+    min-width: 16px;
+    min-height: 16px;
+    border-radius: 100%;
+    border: 1px solid #e7e7e7;
+    padding: 12px;
+  }
+}
+
+.text {
+  &-legal {
+    font-size: 14px;
+    font-weight: 600;
+    color: #353535;
+    margin-left: 8px;
+  }
+}
+
+.icon-legal {
+  height: 18px;
+  width: 18px;
+  margin-left: 16px;
+}

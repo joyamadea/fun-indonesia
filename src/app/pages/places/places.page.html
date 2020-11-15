@@ -1,9 +1,55 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>places</ion-title>
+  <ion-toolbar color="redd">
+    <ion-title
+      >Jakarta <ion-icon name="caret-down" (click)="goSearch()"></ion-icon
+    ></ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="goSearch()" fill="clear">
+        <ion-icon name="search" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div>
+    <ion-card style="margin-top: 20px">
+      <ion-card-header style="padding-bottom: 4px">
+        <ion-card-title> Fun Fact </ion-card-title>
+      </ion-card-header>
+      <ion-card-content class="funfact-text">
+        Jakarta is one of the few cities in South East Asia with the largest
+        number of museums in the city
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div *ngFor="let fake of fakePlaces">
+    <ion-card style="margin-top: 20px" (click)="gotoPlace(1)">
+      <img
+        src="../../../assets/dummy/Fatahillah.jpg"
+        style="height: 155px; width: 391px; object-fit: cover"
+      />
+      <ion-card-content>
+        <ion-row>
+          <ion-col> <span class="place-title">Kota Tua</span></ion-col>
+          <ion-col class="ion-text-right place-subtitle">
+            <ion-label>
+              <ion-icon name="star" slot="start"></ion-icon>
+              4/5
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col> <span class="place-subtitle">West Jakarta</span> </ion-col>
+          <ion-col class="ion-text-right place-subtitle">
+            <ion-label>
+              <ion-icon name="location" slot="start"></ion-icon>
+              0,15 km
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
