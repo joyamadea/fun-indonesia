@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-select-language',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectLanguagePage implements OnInit {
 
-  constructor() { }
+  constructor(public modalCtrl: ModalController) { }
+
+  async dismiss() {
+    this.modalCtrl.dismiss({
+      'dismissed': true
+    });
+  }
 
   ngOnInit() {
   }

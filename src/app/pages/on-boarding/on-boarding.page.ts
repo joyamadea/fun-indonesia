@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-on-boarding',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OnBoardingPage implements OnInit {
 
-  constructor() { }
+  constructor(public navCtrl : NavController) { }
 
   ngOnInit() {
   }
 
+  registerPage(){
+    this.navCtrl.navigateForward('/register')
+  }
+
+  loginPage(){
+    this.navCtrl.navigateForward('/login')
+  }
 }
