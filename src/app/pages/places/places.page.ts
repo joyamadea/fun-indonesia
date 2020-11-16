@@ -10,6 +10,7 @@ import { SearchComponent } from "src/app/component/search/search.component";
 })
 export class PlacesPage implements OnInit {
   fakePlaces = Array(3);
+  saved: boolean = false;
   constructor(private modalCtrl: ModalController, private router: Router) {}
 
   ngOnInit() {}
@@ -23,5 +24,13 @@ export class PlacesPage implements OnInit {
 
   gotoPlace(id) {
     this.router.navigate(["/places-detail", id]);
+  }
+
+  clicked() {
+    if (this.saved) {
+      this.saved = false;
+    } else {
+      this.saved = true;
+    }
   }
 }

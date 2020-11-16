@@ -72,6 +72,14 @@ const routes: Routes = [
         (m) => m.PlacesDetailPageModule
       ),
   },
+  {
+    path: 'reviews',
+    loadChildren: () => import('./pages/review/reviews/reviews.module').then( m => m.ReviewsPageModule)
+  },
+  {
+    path: 'reviews-add',
+    loadChildren: () => import('./pages/review/reviews-add/reviews-add.module').then( m => m.ReviewsAddPageModule)
+  },
 ];
 
 @NgModule({

@@ -25,12 +25,22 @@
     </ion-card>
   </div>
   <div *ngFor="let fake of fakePlaces">
-    <ion-card style="margin-top: 20px" (click)="gotoPlace(1)">
+    <ion-card style="margin-top: 20px">
+      <div class="btn-save" (click)="clicked()">
+        <div *ngIf="!saved">
+          <img src="../../../assets/icon/unsaved.png" />
+        </div>
+        <div *ngIf="saved">
+          <img src="../../../assets/icon/saved.png" />
+        </div>
+      </div>
       <img
         src="../../../assets/dummy/Fatahillah.jpg"
         style="height: 155px; width: 391px; object-fit: cover"
+        (click)="gotoPlace(1)"
       />
-      <ion-card-content>
+
+      <ion-card-content (click)="gotoPlace(1)">
         <ion-row>
           <ion-col> <span class="place-title">Kota Tua</span></ion-col>
           <ion-col class="ion-text-right place-subtitle">

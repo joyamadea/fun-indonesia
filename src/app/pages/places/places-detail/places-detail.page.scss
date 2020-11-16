@@ -1,0 +1,27 @@
+.place {
+  &-title {
+    font-weight: bold;
+    font-size: 16px;
+    color: black;
+  }
+  &-subtitle {
+    font-size: 12px;
+    color: black;
+  }
+}
+
+ion-toolbar {
+  --background: transparent;
+  --border: none;
+}
+
+// ion-content {
+//   --background: url("../../../../assets/dummy/Fatahillah.jpg");
+// }
+
+.btn-back {
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
