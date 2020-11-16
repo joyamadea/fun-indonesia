@@ -1,7 +1,11 @@
 <ion-header>
   <ion-toolbar color="redd">
     <ion-title>About FunIndonesia </ion-title>
-    <ion-icon name="close-outline" slot="end" (click)="dismiss()"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
