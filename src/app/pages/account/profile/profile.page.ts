@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { AboutPage } from '../../modal/about/about.page';
 import { OnBoardingPage } from '../../on-boarding/on-boarding.page';
 import { SelectLanguagePage } from '../../select-language/select-language.page';
@@ -11,9 +12,13 @@ import { SelectLanguagePage } from '../../select-language/select-language.page';
 })
 export class ProfilePage implements OnInit {
 
+  userEmail: string;
+  userID: string;
+
   constructor(
-    public modalCtrl: ModalController,
-    public navCtrl: NavController) { }
+    private modalCtrl: ModalController,
+    private navCtrl: NavController,
+    private authSrv: AuthService) { }
 
   async presentModalAbout() {
     const modal = await this.modalCtrl.create({
@@ -36,6 +41,17 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    this.authSrv.userDetails().subscribe(res => {
+      console.log('res:',res);
+      console.log('uid:', res.uid);
+      if(res !== null){
+        this.userEmail = res.email;
+      } else{
+        this.navCtrl.navigateBack('');
+      }
+    }, err => {
+      console.log(err);
+    });
   }
 
 }
