@@ -37,10 +37,10 @@
       <img
         src="../../../assets/dummy/Fatahillah.jpg"
         style="height: 155px; width: 391px; object-fit: cover"
-        (click)="gotoPlace(2)"
+        (click)="gotoPlace(place.key)"
       />
 
-      <ion-card-content (click)="gotoPlace(2)">
+      <ion-card-content (click)="gotoPlace(place.key)">
         <ion-row>
           <ion-col> <span class="place-title">{{ place.name }}</span></ion-col>
           <ion-col class="ion-text-right place-subtitle">
