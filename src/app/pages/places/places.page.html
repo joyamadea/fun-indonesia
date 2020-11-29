@@ -24,7 +24,7 @@
       </ion-card-content>
     </ion-card>
   </div>
-  <div *ngFor="let fake of fakePlaces">
+  <div *ngFor="let place of places">
     <ion-card style="margin-top: 20px">
       <div class="btn-save" (click)="clicked()">
         <div *ngIf="!saved">
@@ -37,12 +37,12 @@
       <img
         src="../../../assets/dummy/Fatahillah.jpg"
         style="height: 155px; width: 391px; object-fit: cover"
-        (click)="gotoPlace(1)"
+        (click)="gotoPlace(2)"
       />
 
-      <ion-card-content (click)="gotoPlace(1)">
+      <ion-card-content (click)="gotoPlace(2)">
         <ion-row>
-          <ion-col> <span class="place-title">Kota Tua</span></ion-col>
+          <ion-col> <span class="place-title">{{ place.name }}</span></ion-col>
           <ion-col class="ion-text-right place-subtitle">
             <ion-label>
               <ion-icon name="star" slot="start"></ion-icon>

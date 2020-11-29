@@ -5,6 +5,7 @@ import { PlacesService } from 'src/app/services/places.service';
 import { ReviewsAddPage } from "../../review/reviews-add/reviews-add.page";
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { TranslatesService } from 'src/app/services/translate.service';
 
 @Component({
   selector: "app-places-detail",
@@ -20,8 +21,9 @@ export class PlacesDetailPage implements OnInit {
   detail: any;
   base: any;
   activities: any;
+  checkLanguage: any;
   constructor(private router: Router, private modalCtrl: ModalController, public activatedRoute: ActivatedRoute,
-    private placesService: PlacesService, private db: AngularFireDatabase) {}
+    private placesService: PlacesService, private db: AngularFireDatabase, private translateService: TranslatesService) {}
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((paramMap) => {
@@ -31,9 +33,19 @@ export class PlacesDetailPage implements OnInit {
       this.placeId = paramMap.get("id");
       console.log(this.placeId);
     });
-
-    this.getDetailEn();
     
+
+    this.languageCheck();
+    
+  }
+
+  async languageCheck(){
+    this.checkLanguage = await this.translateService.getLang();
+    if(this.checkLanguage == 'en'){
+      this.getDetailEn();
+    } else {
+      this.getDetailId();
+    }
   }
 
   goBack() {
@@ -42,6 +54,19 @@ export class PlacesDetailPage implements OnInit {
 
   async getDetailEn(){
     await this.db.object('/details/en/' + this.placeId).valueChanges().subscribe(data => {
+      this.detail = data;
+      this.activities = this.detail.activity.split(', ');
+      console.log(this.detail);
+    })
+
+    await this.db.object('/places/' + this.placeId).valueChanges().subscribe(data => {
+      this.base = data;
+      console.log(this.base);
+    })
+  }
+
+  async getDetailId(){
+    await this.db.object('/details/id/' + this.placeId).valueChanges().subscribe(data => {
       this.detail = data;
       this.activities = this.detail.activity.split(', ');
       console.log(this.detail);
