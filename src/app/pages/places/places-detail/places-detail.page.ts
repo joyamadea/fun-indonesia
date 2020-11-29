@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
+import { PlacesService } from 'src/app/services/places.service';
 import { ReviewsAddPage } from "../../review/reviews-add/reviews-add.page";
+import { map } from 'rxjs/operators';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: "app-places-detail",
@@ -9,16 +12,48 @@ import { ReviewsAddPage } from "../../review/reviews-add/reviews-add.page";
   styleUrls: ["./places-detail.page.scss"],
 })
 export class PlacesDetailPage implements OnInit {
-  activites = Array(3);
-  facilities = Array(2);
+  fakeActivity = Array(3);
+  fakeFacilities = Array(2);
+  fakeReview = Array(3);
   saved: boolean = false;
-  constructor(private router: Router, private modalCtrl: ModalController) {}
+  placeId: any;
+  detail: any;
+  base: any;
+  activities: any;
+  constructor(private router: Router, private modalCtrl: ModalController, public activatedRoute: ActivatedRoute,
+    private placesService: PlacesService, private db: AngularFireDatabase) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      if (!paramMap.has("id")) {
+        return;
+      }
+      this.placeId = paramMap.get("id");
+      console.log(this.placeId);
+    });
+
+    this.getDetailEn();
+    
+  }
 
   goBack() {
     this.router.navigate(["/tabs/home"]);
   }
+
+  async getDetailEn(){
+    await this.db.object('/details/en/' + this.placeId).valueChanges().subscribe(data => {
+      this.detail = data;
+      this.activities = this.detail.activity.split(', ');
+      console.log(this.detail);
+    })
+
+    await this.db.object('/places/' + this.placeId).valueChanges().subscribe(data => {
+      this.base = data;
+      console.log(this.base);
+    })
+  }
+
+
   gotoAllReview() {
     this.router.navigate(["/reviews"]);
   }
