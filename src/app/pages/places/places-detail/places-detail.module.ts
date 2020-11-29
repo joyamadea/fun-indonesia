@@ -8,6 +8,7 @@ import { PlacesDetailPageRoutingModule } from './places-detail-routing.module';
 
 import { PlacesDetailPage } from './places-detail.page';
 import { TranslateModule } from '@ngx-translate/core';
+import { IonicRatingModule } from 'ionic4-rating';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     PlacesDetailPageRoutingModule,
-    TranslateModule
+    TranslateModule,
+    IonicRatingModule
   ],
   declarations: [PlacesDetailPage]
 })

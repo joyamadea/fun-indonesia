@@ -11,12 +11,59 @@
 
 <ion-content>
   <ion-grid>
-    <div>
-      <ion-row>
-        <ion-col>
-          <span class="place-title">Rate Your Experience</span>
-        </ion-col>
-      </ion-row>
-    </div>
+    <form class="form" [formGroup]="validations_form" (ngSubmit)="addReview(validations_form.value)">
+      <div>
+        <!-- Rating -->
+        <ion-row style="margin-top: 12px;">
+          <ion-col>
+            <span class="place-title">Rate Your Experience</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="8">
+            <rating formControlName="rating"
+                readonly="false" 
+                size="default"
+                (rateChange)="onRateChange($event)">
+                  </rating> 
+          </ion-col>
+        </ion-row>
+
+        <!-- photos -->
+        <ion-row style="margin-top: 12px;">
+          <ion-col>
+            <span class="place-title">Add Photos</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="8">
+            
+          </ion-col>
+        </ion-row>
+
+        <!-- WRITE REVIEW -->
+        <ion-row style="margin-top: 12px;">
+          <ion-col>
+            <span class="place-title">Write a Review</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-textarea formControlName="review" placeholder="Tell us what you think" rows="4" style="border: 1px solid black; border-radius: 8px;"></ion-textarea>
+
+        </ion-row>
+      </div>
+      <ion-button
+        type="submit"
+        style="height: 50px;"
+        color="redd"
+        expand="full"
+        [disabled]="!validations_form.valid"
+      >
+        <ion-label>Add Review</ion-label>
+      </ion-button>
+    </form>
   </ion-grid>
 </ion-content>

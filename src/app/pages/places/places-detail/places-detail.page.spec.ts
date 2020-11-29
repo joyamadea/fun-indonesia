@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 import { IonicStorageModule } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { IonicRatingModule } from 'ionic4-rating';
 import { createTranslateLoader } from 'src/app/app.module';
 
 import { PlacesDetailPage } from './places-detail.page';
@@ -21,7 +22,7 @@ describe('PlacesDetailPage', () => {
             useFactory: createTranslateLoader,
             deps: [HttpClient]
           }
-        }),]
+        }), IonicRatingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PlacesDetailPage);

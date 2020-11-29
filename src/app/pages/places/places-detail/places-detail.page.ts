@@ -86,6 +86,9 @@ export class PlacesDetailPage implements OnInit {
   async writeReview() {
     const modal = await this.modalCtrl.create({
       component: ReviewsAddPage,
+      componentProps: {
+        place: this.placeId
+      }
     });
     return await modal.present();
   }
