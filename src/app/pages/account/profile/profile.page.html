@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="redd">
-    <ion-title>Account</ion-title>
+    <ion-title>{{ 'ACCOUNT' | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -54,7 +54,7 @@
             slot="start"
             class="icon-legal"
           ></ion-icon>
-          <span class="text-legal">About FunIndonesia</span>
+          <span class="text-legal">{{ 'ABOUT' | translate }}</span>
         </ion-label>
       </ion-item>
       <ion-item
@@ -66,12 +66,12 @@
       >
         <ion-label style="display: flex">
           <ion-icon name="globe" slot="start" class="icon-legal"></ion-icon>
-          <span class="text-legal">Change Language</span>
+          <span class="text-legal">{{ 'CHANGE_LANGUAGE' | translate}}</span>
         </ion-label>
       </ion-item>
     </ion-list>
   </ion-card>
   <ion-button class="ion-padding" expand="block" color="redd" (click)="logOut()"
-    >Log Out</ion-button
+    >{{ 'LOGOUT' | translate }}</ion-button
   >
 </ion-content>

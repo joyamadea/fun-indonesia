@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SelectLanguagePageRoutingModule } from './select-language-routing.module';
 
 import { SelectLanguagePage } from './select-language.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SelectLanguagePageRoutingModule
+    SelectLanguagePageRoutingModule,
+    TranslateModule
   ],
   declarations: [SelectLanguagePage]
 })
