@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ElementRef, ViewChild } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ModalController } from "@ionic/angular";
 import { PlacesService } from 'src/app/services/places.service';
@@ -6,6 +6,8 @@ import { ReviewsAddPage } from "../../review/reviews-add/reviews-add.page";
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TranslatesService } from 'src/app/services/translate.service';
+
+declare var google: any;
 
 @Component({
   selector: "app-places-detail",
@@ -22,6 +24,19 @@ export class PlacesDetailPage implements OnInit {
   base: any;
   activities: any;
   checkLanguage: any;
+
+  map: any;
+  private mapElement: ElementRef
+  @ViewChild('map', {read: ElementRef, static: false}) get mapRef(): ElementRef { return this.mapElement; }
+  set mapRef(newValue: ElementRef) {
+    if(this.mapElement !== newValue){
+      this.mapElement = newValue;
+    }
+  };
+  umnPos: any = {
+    lat: -6.256081,
+    lng: 106.618755
+  }
   constructor(private router: Router, private modalCtrl: ModalController, public activatedRoute: ActivatedRoute,
     private placesService: PlacesService, private db: AngularFireDatabase, private translateService: TranslatesService) {}
 
@@ -48,8 +63,29 @@ export class PlacesDetailPage implements OnInit {
     }
   }
 
+  ionViewDidEnter(){
+    this.showMap(this.umnPos);
+  }
   goBack() {
     this.router.navigate(["/tabs/home"]);
+  }
+
+  showMap(loc){
+    const location = new google.maps.LatLng(loc.lat, loc.lng);
+    const options = {
+      center: location,
+      zoom: 13,
+      disableDefaultUI: true
+    };
+    setTimeout(() => {
+      this.map = new google.maps.Map(this.mapRef.nativeElement, options);
+ }, 3000);
+    
+
+    const marker = new google.maps.Marker({
+      position: this.umnPos,
+      map: this.map
+    })
   }
 
   async getDetailEn(){

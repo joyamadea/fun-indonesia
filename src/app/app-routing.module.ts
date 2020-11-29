@@ -80,6 +80,10 @@ const routes: Routes = [
     path: 'reviews-add',
     loadChildren: () => import('./pages/review/reviews-add/reviews-add.module').then( m => m.ReviewsAddPageModule)
   },
+  {
+    path: 'map',
+    loadChildren: () => import('./pages/map/map.module').then( m => m.MapPageModule)
+  },
 ];
 
 @NgModule({
