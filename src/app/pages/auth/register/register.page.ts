@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { RegisterService } from 'src/app/services/register.service';
 
 @Component({
   selector: 'app-register',
@@ -10,13 +11,16 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private navCtrl: NavController, private authSrv: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private navCtrl: NavController, private authSrv: AuthService, private formBuilder: FormBuilder, private registerSrv: RegisterService) { }
 
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string ='';
 
   validation_messages = {
+    'username': [
+      {type: 'required', message:'Username is required.'}
+    ],
     'email': [
       {type: 'required', message:'Email is required.'},
       {type: 'pattern', message:'Enter a valid email.'}
@@ -29,6 +33,9 @@ export class RegisterPage implements OnInit {
   
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
+      username: new FormControl ('', Validators.compose([
+        Validators.required
+      ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -36,8 +43,8 @@ export class RegisterPage implements OnInit {
       password: new FormControl('', Validators.compose([
         Validators.minLength(8),
         Validators.required
-      ]))
-    })
+      ])),
+    });
   }
 
   tryRegister(value){
@@ -45,6 +52,10 @@ export class RegisterPage implements OnInit {
       console.log(res);
       this.errorMessage = '';
       this.successMessage = 'Your account has been created. Please log in.';
+
+      this.authSrv.userDetails().subscribe(res =>{
+        console.log(res.uid);
+      })
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
@@ -52,9 +63,18 @@ export class RegisterPage implements OnInit {
     });
   }
 
+  OnSubmit(form : NgForm){
+    console.log(form);
+
+    this.registerSrv.create(form.value, form.value.uid).then(res => {
+      console.log(res);
+      }).catch(error => console.log(error));
+    }
+
   back(){
     this.navCtrl.navigateBack('/on-boarding')
   }
+
   loginPage(){
     this.navCtrl.navigateForward('/login')
   }

@@ -1,12 +1,22 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import { Profile } from '../model/profile';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private fireAuth: AngularFireAuth) { }
+  private dbPath = '/profile';
+  profileRef: AngularFireList<Profile> = null;
+
+  constructor(private fireAuth: AngularFireAuth, private db: AngularFireDatabase) {
+   }  
+
+   create(profile: Profile): any {
+     return this.profileRef.push(profile);
+   }
 
   registerUser(value) {
     return new Promise<any>((resolve,reject) => {

@@ -55,12 +55,27 @@
     (click)="loginPage()"
     ><b>Already have an account? Login here.</b></ion-button
   > -->
-  <form class="form" [formGroup]="validations_form" (ngSubmit)="tryRegister(validations_form.value)">
+  <form class="form" [formGroup]="validations_form" #f="ngForm" (ngSubmit)="tryRegister(validations_form.value), onSubmit(f)">
+
+    <ion-item>
+      <ion-label position="floating" color="primary">Username</ion-label>
+      <ion-input type="text" ngModel formControlName="username"></ion-input>
+    </ion-item>
+
+    <div class="validation-errors">
+      <ng-container *ngFor="let validation of validation_messages.username">
+        <div class="error-message" 
+        *ngIf="validations_form.get('username').hasError(validation.type) && (validations_form.get('username').dirty || validations_form.get('username').touched)">
+        {{validation.message}}
+        </div>
+      </ng-container>
+    </div>
 
     <ion-item>
       <ion-label position="floating" color="primary">Email</ion-label>
       <ion-input type="text" formControlName="email"></ion-input>
     </ion-item>
+
     <div class="validation-errors">
       <ng-container *ngFor="let validation of validation_messages.email">
         <div class="error-message" 
