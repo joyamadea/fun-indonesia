@@ -5,6 +5,8 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { CacheService } from './services/cache.service';
 import { TranslatesService } from './services/translate.service';
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +19,9 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private cache: CacheService,
-    private translateService: TranslatesService
+    private translateService: TranslatesService,
+    private storage: Storage,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -28,6 +32,7 @@ export class AppComponent {
       this.splashScreen.hide();
     });
     this.initLanguage();
+    this.checkOnboarding();
   }
 
   async initLanguage() {
@@ -38,5 +43,13 @@ export class AppComponent {
     } else {
       this.translateService.usedLang(lang);
     }
+  }
+
+  checkOnboarding(){
+    this.storage.get('boarding').then((boarding) => {
+      if (!boarding) {
+        this.router.navigate(['/on-boarding']);
+      }
+    });
   }
 }

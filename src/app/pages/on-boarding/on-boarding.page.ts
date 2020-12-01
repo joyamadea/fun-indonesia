@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-on-boarding',
@@ -8,9 +9,10 @@ import { NavController } from '@ionic/angular';
 })
 export class OnBoardingPage implements OnInit {
 
-  constructor(public navCtrl : NavController) { }
+  constructor(public navCtrl : NavController, private storage: Storage) { }
 
   ngOnInit() {
+    this.storage.set('boarding', true);
   }
 
   registerPage(){
