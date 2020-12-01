@@ -16,6 +16,7 @@ export class RegisterPage implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
   successMessage: string ='';
+  currUid: any;
 
   validation_messages = {
     'username': [
@@ -49,27 +50,33 @@ export class RegisterPage implements OnInit {
 
   tryRegister(value){
     this.authSrv.registerUser(value).then(res => {
-      console.log(res);
       this.errorMessage = '';
       this.successMessage = 'Your account has been created. Please log in.';
 
       this.authSrv.userDetails().subscribe(res =>{
-        console.log(res.uid);
+        this.currUid = res.uid;
+        this.inputDatabase(value);
       })
+
+
     }, err => {
       console.log(err);
       this.errorMessage = err.message;
       this.successMessage = '';
     });
+    // this.inputDatabase(value);
   }
 
-  OnSubmit(form : NgForm){
-    console.log(form);
-
-    this.registerSrv.create(form.value, form.value.uid).then(res => {
-      console.log(res);
-      }).catch(error => console.log(error));
+  inputDatabase(form){
+    let obj = {
+      username: form.username,
+      picture: "null",
+      uid: this.currUid
     }
+    this.registerSrv.create(obj).then(res => {
+      
+      }).catch(error => console.log(error));
+  }
 
   back(){
     this.navCtrl.navigateBack('/on-boarding')
