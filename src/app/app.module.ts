@@ -19,6 +19,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { IonicRatingModule } from 'ionic4-rating';
 import { FormBuilder } from '@angular/forms';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,7 +40,8 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    FormBuilder
+    FormBuilder,
+    Geolocation
   ],
   bootstrap: [AppComponent]
 })
