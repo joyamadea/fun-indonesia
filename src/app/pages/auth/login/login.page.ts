@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   validations_form: FormGroup;
   errorMessage: string = '';
   
-  constructor(private navCtrl:NavController, private authSrv: AuthService, private formBuilder: FormBuilder) { }
+  constructor(private navCtrl:NavController, private authSrv: AuthService, private formBuilder: FormBuilder, private toast: ToastController) { }
 
   ngOnInit() {
     this.validations_form = this.formBuilder.group({
@@ -42,8 +42,13 @@ export class LoginPage implements OnInit {
     .then(res => {
       console.log(res);
       this.errorMessage = '';
+      this.toastSuccess();
       this.navCtrl.navigateForward('/tabs')
-    })
+    }, err => {
+      this.toastFail();
+      console.log(err);
+      this.errorMessage = err.message;
+    });
   }
 
   back(){
@@ -53,4 +58,21 @@ export class LoginPage implements OnInit {
   regisPage(){
     this.navCtrl.navigateForward('/register')
   }
+
+  async toastSuccess() {
+    const toast = await this.toast.create({
+      message: 'Login successful!',
+      duration: 2000
+    });
+    toast.present();
+  }
+  async toastFail() {
+    const toast = await this.toast.create({
+      message: 'Login failed!',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
 }

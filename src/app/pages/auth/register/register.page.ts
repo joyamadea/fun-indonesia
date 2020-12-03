@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { RegisterService } from 'src/app/services/register.service';
 
@@ -11,7 +11,7 @@ import { RegisterService } from 'src/app/services/register.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private navCtrl: NavController, private authSrv: AuthService, private formBuilder: FormBuilder, private registerSrv: RegisterService) { }
+  constructor(private navCtrl: NavController, private authSrv: AuthService, private formBuilder: FormBuilder, private registerSrv: RegisterService, private toast: ToastController) { }
 
   validations_form: FormGroup;
   errorMessage: string = '';
@@ -52,14 +52,14 @@ export class RegisterPage implements OnInit {
     this.authSrv.registerUser(value).then(res => {
       this.errorMessage = '';
       this.successMessage = 'Your account has been created. Please log in.';
-
       this.authSrv.userDetails().subscribe(res =>{
         this.currUid = res.uid;
         this.inputDatabase(value);
       })
-
+      this.toastSuccess();
 
     }, err => {
+      this.toastFail();
       console.log(err);
       this.errorMessage = err.message;
       this.successMessage = '';
@@ -86,5 +86,20 @@ export class RegisterPage implements OnInit {
     this.navCtrl.navigateForward('/login')
   }
   
+  async toastSuccess() {
+    const toast = await this.toast.create({
+      message: 'Register successful!',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+  async toastFail() {
+    const toast = await this.toast.create({
+      message: 'Register failed!',
+      duration: 2000
+    });
+    toast.present();
+  }
   
 }
