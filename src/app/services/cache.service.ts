@@ -16,4 +16,12 @@ export class CacheService {
     return this.storage.get('currLanguage');
   }
 
+  setLoggedin(val){
+    return this.storage.set('login', val);
+  }
+
+  getLoggedin(){
+    return this.storage.get('login');
+  }
+
 }
