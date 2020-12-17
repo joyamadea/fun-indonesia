@@ -1,7 +1,54 @@
 <ion-header>
   <ion-toolbar color="redd">
-    <ion-title>Saved</ion-title>
+    <ion-title
+      >Saved</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <div *ngIf="savedPlace != undefined || savedPlace != null">
+  <div *ngFor="let place of savedPlace;index as i;">
+    <ion-card style="margin-top: 20px">
+      <div class="btn-save" (click)="clicked(place.key)">
+        <!--<div *ngIf="!saved">
+          <img src="../../../assets/icon/unsaved.png" />
+        </div>-->
+        <div>
+          <img src="../../../assets/icon/saved.png" />
+        </div>
+        <!--<ion-icon name="bookmark" style="color:red;"></ion-icon>-->
+      </div>
+      <img
+        src="../../../assets/dummy/Fatahillah.jpg"
+        style="height: 155px; width: 391px; object-fit: cover"
+        (click)="gotoPlace(place.key)"
+      />
+
+      <ion-card-content (click)="gotoPlace(place.key)" class="content">
+        <ion-row>
+          <ion-col> <span class="place-title">{{ place.name }}</span></ion-col>
+          <ion-col class="ion-text-right place-subtitle">
+            <ion-label>
+              <ion-icon name="star" slot="start"></ion-icon>
+              {{ place.rating }}/5
+            </ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col> 
+            <!-- <span class="place-subtitle" *ngIf="checkLanguage == 'en'">{{ cityInfo.enName }}</span> 
+            <span class="place-subtitle" *ngIf="checkLanguage == 'id'">{{ cityInfo.idName }}</span>  -->
+            <span class="place-subtitle">West Jakarta</span>
+          </ion-col>
+          <ion-col class="ion-text-right place-subtitle">
+            <ion-label>
+              <ion-icon name="location" slot="start"></ion-icon>
+              {{ place.distance }}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  </div>
+</ion-content>

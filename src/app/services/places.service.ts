@@ -24,4 +24,15 @@ export class PlacesService {
   getAllCity(): AngularFireList<Places> {
     return this.cityRef;
   }
+
+  savePlace(place, userUID, key){
+    console.log(place);
+    return this.db.list('saved/'+userUID).set(key,place);
+  }
+
+  getAllSavedPlace(id):AngularFireList<Places>{
+    return this.db.list('saved/'+id);
+  }
+
+
 }

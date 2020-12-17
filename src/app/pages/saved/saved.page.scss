@@ -1,0 +1,38 @@
+.place {
+    &-title {
+      font-weight: bold;
+      font-size: 16px;
+      color: black;
+    }
+    &-subtitle {
+      font-size: 12px;
+      color: black;
+    }
+  }
+  
+  ion-card-title {
+    color: #d90000;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .funfact-text {
+    color: black;
+    font-size: 14px;
+  }
+  
+  .btn-save {
+    padding: 5px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    border-radius: 50%;
+  }
+  
+  .content{
+    ion-row{
+      height: 25px !important;
+    }
+    padding: 10px;
+    padding-bottom:12px;
+  }
