@@ -37,7 +37,7 @@ export class AuthService {
   }
 
   logoutUser(){
-    return new Promise((resolve,reject) => {
+    return new Promise<void>((resolve,reject) => {
       if (this.fireAuth.currentUser){
         this.fireAuth.signOut()
         .then(() => {
@@ -53,4 +53,9 @@ export class AuthService {
   userDetails(){
     return this.fireAuth.user;
   }
+
+  getUser(search):AngularFireList<Profile>{
+    return this.db.list('profile/', ref=>ref.orderByChild('uid').equalTo(search));
+  }
+
 }

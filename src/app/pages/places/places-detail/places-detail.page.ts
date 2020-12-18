@@ -32,6 +32,9 @@ export class PlacesDetailPage implements OnInit {
   places:any = [];
   map: any;
   review: any = [];
+  revUsername: any[]=[];
+  tempUsername:any;
+  currUser:any;
 
   constructor(private router: Router, private modalCtrl: ModalController, public activatedRoute: ActivatedRoute, private authSrv:AuthService,
     private placesService: PlacesService, private db: AngularFireDatabase, private translateService: TranslatesService, private reviewService: ReviewService,
@@ -39,14 +42,14 @@ export class PlacesDetailPage implements OnInit {
 
   ngOnInit() {
     mapboxgl.accessToken = environment.mapbox_token;
-    
-  }
-  
-  ionViewWillEnter(){
     this.getSaved();
     this.languageCheck();
     this.getPlaces();
     this.getReviews();
+  }
+  
+  ionViewWillEnter(){
+    
   }
 
   getSaved(){
@@ -105,16 +108,40 @@ export class PlacesDetailPage implements OnInit {
 
   getReviews(){
     // console.log(this.placeId);
-    // this.reviewService.getAll(this.placeId).snapshotChanges().pipe(
-    //   map(changes => changes.map(
-    //     c => ({
-    //       key: c.payload.key, ...c.payload.val()
-    //     })
-    //   ))
-    // ).subscribe(data => {
-    //   console.log(data);
-    //   this.review = data;
-    // });
+    this.reviewService.getAllReview(this.placeId).snapshotChanges().pipe(
+    map(changes => changes.map(
+         c => ({
+           key: c.payload.key, ...c.payload.val()
+         })
+       ))
+     ).subscribe(data => {
+       //console.log(data);
+       this.review = data;
+       //console.log(this.review);
+       for(let rev of this.review){
+        //console.log(rev);
+        this.authSrv.getUser(rev.uid).snapshotChanges().pipe(
+          map(changes => changes.map(
+            c => ({
+              key: c.payload.key, ...c.payload.val()
+            })
+          ))
+        ).subscribe(data => {
+          this.currUser=data;
+          console.log(this.currUser);
+          for(let a of this.currUser){
+            let userkey=a.key;
+            this.db.object('/profile/'+userkey).valueChanges().subscribe(res => {
+              this.tempUsername=res['username'];
+              //console.log(this.tempUsername);
+              this.revUsername.push(this.tempUsername);    
+            });
+          }
+        });
+
+        //console.log('final arr:'+this.revUsername);  
+       }
+     });
   }
 
   showMap(lng, lat){

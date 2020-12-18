@@ -192,11 +192,11 @@
         </ion-row>
         <ion-row
           style="font-size: 12px; border-top: 1px #bbbbbb solid"
-          *ngFor="let fake of fakeReview"
+          *ngFor="let rev of review; index as i;"
         >
           <ion-col>
             <ion-row>
-              <ion-col> username </ion-col>
+              <ion-col> {{this.revUsername[i]}} </ion-col>
             </ion-row>
             <ion-row>
               <ion-col style="font-size: 10px">
@@ -209,7 +209,7 @@
             </ion-row>
             <ion-row>
               <ion-col>
-                this a dummy review meant to be only for display
+                {{rev.review}}
               </ion-col>
             </ion-row>
             <ion-row>

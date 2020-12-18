@@ -18,6 +18,10 @@ export class ReviewService {
     return;
   }
 
+  getAllReview(placeid):AngularFireList<Review>{
+    return this.db.list('reviews/'+placeid);
+  }
+
   create(review: Review, id): any{
     this.reviewRef = this.db.list(this.dbPath+"/"+id);
     return this.reviewRef.push(review);
