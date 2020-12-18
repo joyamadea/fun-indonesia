@@ -8,6 +8,7 @@ import { ReviewsAddPageRoutingModule } from './reviews-add-routing.module';
 
 import { ReviewsAddPage } from './reviews-add.page';
 import { IonicRatingModule } from 'ionic4-rating';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { IonicRatingModule } from 'ionic4-rating';
     ReviewsAddPageRoutingModule,
     IonicRatingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule
   ],
   declarations: [ReviewsAddPage]
 })
