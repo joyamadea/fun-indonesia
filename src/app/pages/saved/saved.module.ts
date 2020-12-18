@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { SavedPageRoutingModule } from './saved-routing.module';
 
 import { SavedPage } from './saved.page';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SavedPageRoutingModule
+    SavedPageRoutingModule,
+    TranslateModule
   ],
   declarations: [SavedPage]
 })
