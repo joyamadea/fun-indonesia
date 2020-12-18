@@ -1,5 +1,6 @@
 <ion-header>
   <ion-toolbar>
+    <ion-title>{{ base.name }}</ion-title>
     <ion-buttons slot="start">
       <ion-button (click)="goBack()">
         <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
@@ -14,7 +15,7 @@
     <div>
       <ion-row class="ion-no-padding ion-no-margin">
         <ion-col class="ion-no-padding ion-no-margin">
-          <img src="../../../../assets/dummy/Fatahillah.jpg" />
+          <img [src]="base.picture" />
         </ion-col>
       </ion-row>
     </div>
@@ -114,7 +115,7 @@
       <div>
         <ion-row>
           <ion-col>
-            <ion-button expand="block" color="redd">{{ "GET_DIRECTIONS" | translate }}</ion-button>
+            <ion-button expand="block" color="redd" (click)="getDirections()">{{ "GET_DIRECTIONS" | translate }}</ion-button>
           </ion-col>
         </ion-row>
       </div>
@@ -210,19 +211,6 @@
             <ion-row>
               <ion-col>
                 {{rev.review}}
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col>
-                <img
-                  src="../../../../assets/dummy/museum.jpg"
-                  style="
-                    height: 70px;
-                    width: 70px;
-                    object-fit: cover;
-                    border-radius: 6px;
-                  "
-                />
               </ion-col>
             </ion-row>
             <ion-row>

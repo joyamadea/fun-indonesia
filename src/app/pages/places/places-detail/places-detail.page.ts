@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { ModalController, NavController } from "@ionic/angular";
+import { ModalController, NavController, ToastController } from "@ionic/angular";
 import { PlacesService } from 'src/app/services/places.service';
 import { ReviewsAddPage } from "../../review/reviews-add/reviews-add.page";
 import { map } from 'rxjs/operators';
@@ -38,7 +38,7 @@ export class PlacesDetailPage implements OnInit {
 
   constructor(private router: Router, private modalCtrl: ModalController, public activatedRoute: ActivatedRoute, private authSrv:AuthService,
     private placesService: PlacesService, private db: AngularFireDatabase, private translateService: TranslatesService, private reviewService: ReviewService,
-    private navCtrl: NavController) {}
+    private navCtrl: NavController, private toastController: ToastController) {}
 
   ngOnInit() {
     mapboxgl.accessToken = environment.mapbox_token;
@@ -104,6 +104,21 @@ export class PlacesDetailPage implements OnInit {
         }
       }
     });
+  }
+
+  getDirections(){
+    var lat = this.base.lat;
+    var lng = this.base.lng;
+    this.presentToast();
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Something went wrong.',
+      duration: 2000,
+      color: 'danger'
+    });
+    toast.present();
   }
 
   getReviews(){

@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "fun-indonesia",
+  "appId": "io.ionic.malesngode",
+  "appName": "FunIndonesia",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
