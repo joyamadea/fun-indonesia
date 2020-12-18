@@ -14,5 +14,7 @@
     "ABOUT_FI" : "FunIndonesia is an application for users to know more about Indonesia and its culture. This application was made in accordance to Computer Science Innovative Challenge made by Universitas Multimedia Nusantara. We hope by this application everyone can learn something new about Indonesia whether you are a foreigner or a native.",
     "WELCOME" : "Welcome",
     "HAB FUN" : "Have fun exploring Indonesia and all its culture",
-    "REGIST" : "Already have an account? Login here."
+    "REGIST" : "Already have an account? Login here.",
+    "HOME" : "Home",
+    "SAVED" : "Save"
 }
