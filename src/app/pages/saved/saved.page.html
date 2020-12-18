@@ -19,7 +19,7 @@
         <!--<ion-icon name="bookmark" style="color:red;"></ion-icon>-->
       </div>
       <img
-        src="../../../assets/dummy/Fatahillah.jpg"
+        [src]="place.picture"
         style="height: 155px; width: 391px; object-fit: cover"
         (click)="gotoPlace(place.key)"
       />
