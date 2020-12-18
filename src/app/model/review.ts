@@ -3,5 +3,4 @@ export class Review {
     review: string;
     rating: number;
     uid: string;
-    photos: string;
 }

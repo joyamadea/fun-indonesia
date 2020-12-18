@@ -73,7 +73,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'reviews',
+    path: 'reviews/:id',
     loadChildren: () => import('./pages/review/reviews/reviews.module').then( m => m.ReviewsPageModule)
   },
   {

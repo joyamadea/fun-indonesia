@@ -26,7 +26,7 @@
   </div>
   <div *ngFor="let place of places;index as i;">
     <ion-card style="margin-top: 20px">
-      <div class="btn-save" (click)="clicked(place,place.key)">
+      <div class="btn-save" (click)="clicked(place,place.key)" *ngIf="isLoggedIn">
         <div *ngIf="!place.saved">
           <img src="../../../assets/icon/unsaved.png" />
         </div>
@@ -36,7 +36,7 @@
         <!--<ion-icon [name]="place.saved ? 'bookmark':'bookmark-outline' "></ion-icon>-->
       </div>
       <img
-        src="../../../assets/dummy/Fatahillah.jpg"
+        [src]="place.picture"
         style="height: 155px; width: 391px; object-fit: cover"
         (click)="gotoPlace(place.key)"
       />

@@ -52,9 +52,9 @@ export class ReviewsAddPage implements OnInit {
         return;
       }
       this.placeId = paramMap.get("id");
-      console.log(this.placeId);
+      console.log("place id" + this.placeId);
     });
-
+    // console.log(this.uid);
   }
 
   dismiss() {
