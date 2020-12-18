@@ -36,7 +36,7 @@ export class PlacesPage implements OnInit {
   isLoggedIn: any;
 
   constructor(private modalCtrl: ModalController, private router: Router, private placesService: PlacesService,
-    private geolocation: Geolocation, private translateService: TranslatesService, private db: AngularFireDatabase, private authSrv:AuthService) {}
+    private geolocation: Geolocation, private translateService: TranslatesService, private db: AngularFireDatabase, private authSrv:AuthService, private cache: CacheService) {}
 
 
   ngOnInit() {

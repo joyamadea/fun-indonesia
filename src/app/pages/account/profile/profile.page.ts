@@ -31,6 +31,14 @@ export class ProfilePage implements OnInit {
     });
   }
 
+  login(){
+    this.navCtrl.navigateForward('login');
+  }
+
+  register(){
+    this.navCtrl.navigateForward('register');
+  }
+
   async presentModalAbout() {
     const modal = await this.modalCtrl.create({
       component: AboutPage,
