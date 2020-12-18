@@ -5,7 +5,7 @@
         <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title>Register</ion-title>
+    <ion-title>{{"REGISTER" | translate}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -98,7 +98,7 @@
       </div>
     </div>
 
-    <ion-button class="submit-btn" type="submit" expand="block" color="redd" style="text-transform: initial;"[disabled]="!validations_form.valid">Register</ion-button>
+    <ion-button class="submit-btn" type="submit" expand="block" color="redd" style="text-transform: initial;"[disabled]="!validations_form.valid">{{"REGISTER" | translate}}</ion-button>
     <label class="error-message">{{errorMessage}}</label>
     <label class="success-message">{{successMessage}}</label>
   </form>
@@ -109,5 +109,5 @@
     expand="block"
     style="text-transform: initial;"
     (click)="loginPage()"
-    ><b>Already have an account? Login here.</b></ion-button>
+    ><b>{{"REGIST" | translate}}</b></ion-button>
 </ion-content>
