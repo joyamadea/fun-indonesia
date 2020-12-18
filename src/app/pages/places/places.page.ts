@@ -9,6 +9,7 @@ import { catchError, timeout, retry } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { TranslatesService } from 'src/app/services/translate.service';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { CacheService } from 'src/app/services/cache.service';
 import { AuthService } from "src/app/services/auth.service";
 
 declare var google: any;
@@ -32,9 +33,11 @@ export class PlacesPage implements OnInit {
   tosaveLng:any;
   tosaveRating:any;
   savedPlace:any;
+  isLoggedIn: any;
 
   constructor(private modalCtrl: ModalController, private router: Router, private placesService: PlacesService,
     private geolocation: Geolocation, private translateService: TranslatesService, private db: AngularFireDatabase, private authSrv:AuthService) {}
+
 
   ngOnInit() {
     this.authSrv.userDetails().subscribe(res =>{
@@ -48,6 +51,8 @@ export class PlacesPage implements OnInit {
   }
 
   ionViewWillEnter(){
+    this.getPlaces();
+    this.isLoggedIn = this.cache.getLoggedin();
     // this.languageCheck();
   }
 
