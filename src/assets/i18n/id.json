@@ -32,5 +32,7 @@
     "ADD_PHOTOS": "Tambah Foto",
     "WRITE_REVIEW": "Tulis Ulasan",
     "ADD_REVIEW": "Tambah Ulasan",
-    "ALL_REVIEWS": "Semua Ulasan"
+    "ALL_REVIEWS": "Semua Ulasan",
+    "HOME" : "Halaman Utama",
+    "SAVED" : "Simpan"
 }

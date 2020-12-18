@@ -32,5 +32,7 @@
     "ADD_PHOTOS": "Add Photos",
     "WRITE_REVIEW": "Write a Review",
     "ADD_REVIEW": "Add Review",
-    "ALL_REVIEWS": "All Reviews"
+    "ALL_REVIEWS": "All Reviews",
+    "HOME" : "Home",
+    "SAVED" : "Save"
 }
