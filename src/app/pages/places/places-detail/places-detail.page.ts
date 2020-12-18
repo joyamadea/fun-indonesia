@@ -6,6 +6,7 @@ import { ReviewsAddPage } from "../../review/reviews-add/reviews-add.page";
 import { map } from 'rxjs/operators';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { TranslatesService } from 'src/app/services/translate.service';
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-places-detail",
@@ -22,7 +23,12 @@ export class PlacesDetailPage implements OnInit {
   base: any;
   activities: any;
   checkLanguage: any;
-  constructor(private router: Router, private modalCtrl: ModalController, public activatedRoute: ActivatedRoute,
+  userUID:any;
+  savedID:any;
+  key:any;
+  places:any;
+
+  constructor(private router: Router, private modalCtrl: ModalController, public activatedRoute: ActivatedRoute, private authSrv:AuthService,
     private placesService: PlacesService, private db: AngularFireDatabase, private translateService: TranslatesService) {}
 
   ngOnInit() {
@@ -32,11 +38,51 @@ export class PlacesDetailPage implements OnInit {
       }
       this.placeId = paramMap.get("id");
       console.log(this.placeId);
-    });
-    
+      this.authSrv.userDetails().subscribe(res =>{
+        if (res !== null) {
+          this.userUID = res.uid;
+          //check if its already saved
+          this.placesService.getAllSavedPlace(this.userUID).snapshotChanges().pipe(
+            map(changes => changes.map(
+              c => ({
+                key: c.payload.key, ...c.payload.val()
+              })
+            ))
+          ).subscribe(data => {
+            this.savedID = data;
+            //console.log(this.savedID);
+            for(let saved of this.savedID){
+              if(saved.placeID==this.placeId){
+                this.saved = true; //mark it as true
+                //this.key=saved.key;
+                //console.log('place is saved');
+                console.log('key '+this.key);
+              }
+            }
 
+          });
+        } 
+      });
+    });
     this.languageCheck();
-    
+    this.placesService.getAll().snapshotChanges().pipe(
+      map(changes => changes.map(
+        c => ({
+          key: c.payload.key, ...c.payload.val()
+        })
+      ))
+    ).subscribe(data => {
+      this.places = data;
+      for(let currPlace of this.places){
+        if(currPlace.key==this.placeId){
+          //this.saved = true; //mark it as true
+          this.key=currPlace.key;
+          //console.log('place is saved');
+          console.log('key '+this.key);
+        }
+      }
+    });
+
   }
 
   async languageCheck(){
@@ -78,7 +124,6 @@ export class PlacesDetailPage implements OnInit {
     })
   }
 
-
   gotoAllReview() {
     this.router.navigate(["/reviews"]);
   }
@@ -96,8 +141,11 @@ export class PlacesDetailPage implements OnInit {
   save() {
     if (this.saved) {
       this.saved = false;
+      this.db.object('/saved/'+this.userUID+'/'+ this.key).remove();
+      console.log('key for delete: '+this.key);
     } else {
       this.saved = true;
+
     }
     console.log("clicked");
   }
