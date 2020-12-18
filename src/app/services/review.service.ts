@@ -13,8 +13,9 @@ export class ReviewService {
     this.reviewRef = db.list(this.dbPath);
   }
 
-  getAll(): AngularFireList<Review> {
-    return this.reviewRef;
+  getAll(id): AngularFireList<Review> {
+    this.reviewRef = this.db.list(this.dbPath);
+    return;
   }
 
   create(review: Review, id): any{

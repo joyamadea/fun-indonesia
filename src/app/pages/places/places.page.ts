@@ -52,7 +52,10 @@ export class PlacesPage implements OnInit {
 
   ionViewWillEnter(){
     this.getPlaces();
-    this.isLoggedIn = this.cache.getLoggedin();
+    this.cache.getLoggedin().then(res => {
+      this.isLoggedIn = res;
+      console.log(this.isLoggedIn);
+    });
     // this.languageCheck();
   }
 

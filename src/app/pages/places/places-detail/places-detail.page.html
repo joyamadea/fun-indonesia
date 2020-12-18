@@ -9,7 +9,7 @@
 </ion-header>
 
 <ion-content>
-  <div *ngIf="detail != null || detail != undefined || base != null || base != undefined">
+  <div>
     
     <div>
       <ion-row class="ion-no-padding ion-no-margin">
@@ -40,7 +40,7 @@
   
         <ion-row>
           <ion-col>
-            <span class="place-title" *ngIf="base.name != null || base.name != undefined">{{ base.name }}</span>
+            <span class="place-title">{{ base.name }}</span>
           </ion-col>
         </ion-row>
   
@@ -56,7 +56,7 @@
   
         <ion-row>
           <ion-col size="10">
-            <span class="place-subtitle" *ngIf="detail.description != null || detail.description != undefined"
+            <span class="place-subtitle"
               >{{ detail.description }}</span
             >
           </ion-col>
@@ -105,11 +105,13 @@
             >
           </ion-col>
         </ion-row>
+      </div>
+    </ion-grid>
+      
+        <div id="map"></div>
   
-        <ion-row>
-          <ion-col> map </ion-col>
-        </ion-row>
-  
+    <ion-grid>
+      <div>
         <ion-row>
           <ion-col>
             <ion-button expand="block" color="redd">Get Directions</ion-button>
