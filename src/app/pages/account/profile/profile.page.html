@@ -5,42 +5,75 @@
 </ion-header>
 
 <ion-content>
-  <div class="profile-header2 ion-margin-horizontal">
-    <ion-row class="ion-align-items-center">
-      <ion-col size="2">
-        <img
-          src="https://pbs.twimg.com/media/EcXskoLVAAAzVu5.jpg"
-          class="image-thumbnail"
-          (click)="changePhoto()"
-        />
-        <!-- <span class="camera">
-          <img src="assets/icon/camera.svg" class="image-size-14" (click)="changePhoto()" />
-        </span> -->
-      </ion-col>
-      <ion-col size="8" class="elipsis">
-        <ion-label class="profile">
-          <span class="user-name"><b>Name</b> </span>
-          <h3 class="user-info">Email</h3>
-        </ion-label>
-      </ion-col>
-      <ion-col size="2" class="ion-text-right">
-        <ion-buttons class="ion-margin-start">
-          <ion-button
-            (click)="openEditProfile()"
-            fill="clear"
-            class="ion-text-right"
-          >
-            <ion-icon
-              slot="icon-only"
-              color="brown-grey"
-              name="settings"
-            ></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-col>
-    </ion-row>
+  <div *ngIf="isLoggedIn">
+    <div class="profile-header2 ion-margin-horizontal" *ngIf="isLoggedIn">
+      <ion-row class="ion-align-items-center">
+        <ion-col size="2">
+          <img
+            src="https://pbs.twimg.com/media/EcXskoLVAAAzVu5.jpg"
+            class="image-thumbnail"
+            (click)="changePhoto()"
+          />
+          <!-- <span class="camera">
+            <img src="assets/icon/camera.svg" class="image-size-14" (click)="changePhoto()" />
+          </span> -->
+        </ion-col>
+        <ion-col size="8" class="elipsis">
+          <ion-label class="profile">
+            <span class="user-name"><b>Name</b> </span>
+            <h3 class="user-info">Email</h3>
+          </ion-label>
+        </ion-col>
+        <ion-col size="2" class="ion-text-right">
+          <ion-buttons class="ion-margin-start">
+            <ion-button
+              (click)="openEditProfile()"
+              fill="clear"
+              class="ion-text-right"
+            >
+              <ion-icon
+                slot="icon-only"
+                color="brown-grey"
+                name="settings"
+              ></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </div>
   </div>
-  <ion-card class="ion-margin" style="margin-top: 24px">
+  
+
+
+  <div
+    *ngIf="!isLoggedIn || isLoggedIn == null || isLoggedIn == undefined"
+  >
+    <div class="profile-header ion-margin-horizontal ion-margin-top">
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-center">
+          <span class="text-account">login</span><br />
+          <span class="text-account">asdfasdf</span>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-margin-top">
+        <ion-col size="6" style="padding-right: 6px;">
+          <ion-button expand="block" color="redd" (click)="actionAuthentication('login')">
+            <ion-text class="text-button">
+              {{"LOGIN" | translate}}
+            </ion-text>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6" style="padding-left: 6px;">
+          <ion-button expand="block" color="redd" (click)="actionAuthentication('signup')">
+            <ion-text class="text-button">
+              {{"REGISTER" | translate}}
+            </ion-text>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+  <ion-card class="ion-margin" style="margin-top: 24px; color: white">
     <ion-list class="ion-no-padding">
       <ion-item
         detail
@@ -71,7 +104,7 @@
       </ion-item>
     </ion-list>
   </ion-card>
-  <ion-button class="ion-padding" expand="block" color="redd" (click)="logOut()"
+  <ion-button class="ion-padding" expand="block" color="redd" (click)="confirmLogout()" *ngIf="isLoggedIn"
     >{{ 'LOGOUT' | translate }}</ion-button
   >
 </ion-content>

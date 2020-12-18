@@ -3,5 +3,10 @@
     "ACCOUNT": "Akun",
     "ABOUT": "Tentang FunIndonesia",
     "LOGOUT": "Keluar",
-    "CHANGE_LANGUAGE": "Ganti Bahasa"
+    "CHANGE_LANGUAGE": "Ganti Bahasa",
+    "DELETE": "Hapus",
+    "CONFIRM_MODAL_LOGOUT": "Apakah anda yakin ingin keluar dari FunIndonesia?",
+    "CONFIRM_MODAL_DELETE": "Apakah anda yakin ingin menghapus akun FunIndonesia?",
+    "LOGIN": "Masuk",
+    "REGISTER": "Daftar"
 }

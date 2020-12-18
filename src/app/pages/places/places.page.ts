@@ -9,6 +9,7 @@ import { catchError, timeout, retry } from 'rxjs/operators';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { TranslatesService } from 'src/app/services/translate.service';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { CacheService } from 'src/app/services/cache.service';
 
 declare var google: any;
 @Component({
@@ -23,9 +24,10 @@ export class PlacesPage implements OnInit {
   locationList = [];
   checkLanguage: any;
   cityInfo: any;
+  isLoggedIn: any;
 
   constructor(private modalCtrl: ModalController, private router: Router, private placesService: PlacesService,
-    private geolocation: Geolocation, private translateService: TranslatesService, private db: AngularFireDatabase) {}
+    private geolocation: Geolocation, private translateService: TranslatesService, private db: AngularFireDatabase, private cache: CacheService) {}
 
   ngOnInit() {
     
@@ -33,6 +35,7 @@ export class PlacesPage implements OnInit {
 
   ionViewWillEnter(){
     this.getPlaces();
+    this.isLoggedIn = this.cache.getLoggedin();
     // this.languageCheck();
   }
 
